@@ -1,0 +1,26 @@
+def remove(self, target):
+    curnode = self.head
+
+    while curnode is not None:
+
+        if curnode.data == target:
+
+            if curnode == self.head:
+                self.head = curnode.next
+                if self.head:
+                    self.head.prev = None
+
+            elif curnode == self.tail:
+                curnode.prev.next = None
+                self.tail = curnode.prev
+
+            else:
+                curnode.prev.next = curnode.next
+                curnode.next.prev = curnode.prev
+
+            print(target, "deleted")
+            return
+
+        curnode = curnode.next   # VERY IMPORTANT
+
+    print(target, "not found")
